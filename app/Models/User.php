@@ -2,10 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
-    use HasFactory;
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'about',
+    ];
+
+    protected $casts = [
+        'admin' => 'boolean'
+    ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function getAvatarAttribute($value)
+    {
+        if (empty($value))
+            return $this->gravatar($this->attributes['email']);
+    }
 }
