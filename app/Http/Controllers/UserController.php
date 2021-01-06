@@ -8,15 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        if (!Auth::user()->admin)
-            return response('', 403);
-    }
 
     public function index()
     {
-        return view('users.list', ['users' => User::paginate(15)]);
+        $this->checkAdmin();
+        return view('users.list', ['users' => User::orderBy('name', 'asc')->paginate(12)]);
     }
 
     public function create()
@@ -57,7 +53,6 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:8'],
             'about' => ['nullable', 'string', 'max:100'],
             'admin' => ['boolean']
         ]);
@@ -70,5 +65,11 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('users.index');
+    }
+
+    private function checkAdmin()
+    {
+        if (!Auth::user()->admin)
+            abort(403);
     }
 }

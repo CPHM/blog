@@ -23,16 +23,18 @@
                         <img src="{{auth()->user()->avatar}}" alt="your avatar" class="h-6 rounded-full"/>
                     </button>
                     <div id="user-dropdown"
-                        class="hidden origin-top-right absolute right-4 w-32 rounded-md shadow-lg bg-gray-100 dark:bg-gray-700 ring-1 ring-black ring-opacity-5">
+                         class="hidden origin-top-right absolute right-4 w-32 rounded-md shadow-lg bg-gray-100 dark:bg-gray-700 ring-1 ring-black ring-opacity-5">
                         <div class="py-1">
                             <a href="{{route('users.update', auth()->user())}}"
                                class="block px-4 py-2 text-sm hover:bg-gray-200 dark:hover:bg-gray-600">
+                                <i class="icon-user mr-1"></i>
                                 Account
                             </a>
                             <form method="POST" action="{{route('logout')}}">
                                 @csrf
                                 <button type="submit"
-                                        class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none">
+                                        class="block w-full flex items-center text-left px-4 py-2 text-sm hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none">
+                                    <i class="icon-exit mr-1"></i>
                                     Logout
                                 </button>
                             </form>
@@ -77,7 +79,7 @@
             @endguest
         </div>
     </nav>
-    <div id="main" class="transition-main mt-12 p-4">
+    <div id="main" class="transition-main px-4 pb-4 pt-16 min-h-screen flex flex-col justify-between">
         @yield('content')
     </div>
 @endsection

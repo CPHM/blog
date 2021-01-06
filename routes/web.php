@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'posts.list')->name('home');
 
-Route::view('/login', 'auth.login')->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::view('/login', 'auth.login')->middleware('guest')->name('login');
+Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::view('/password/request', 'auth.forgot-password')->name('password.request');
 Route::post('/password/request', [AuthController::class, 'getResetEmail']);

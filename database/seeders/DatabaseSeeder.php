@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
             'admin' => true,
             'about' => 'Admin Almighty'
         ]);
+
+        User::factory()->times(50)->create();
     }
 }

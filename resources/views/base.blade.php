@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     @yield('head')
 </head>
-<body>
+<body class="font-roboto">
     @yield('body')
     <script src="{{asset('js/app.js')}}"></script>
 </body>
