@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply text-black bg-gray-100 dark:text-white dark:bg-gray-900
+    }
+
+    input, textarea {
+        @apply text-black bg-gray-200 dark:text-white dark:bg-gray-700
+    }
+}
+
+@layer components {
+    .btn {
+        @apply px-2 py-1 bg-indigo-600 text-white hover:bg-indigo-800 focus:outline-none
+    }
+
+    .link {
+        @apply text-blue-600 dark:text-pink-500 hover:underline
+    }
+}
+
+.transition-menu {
+    transition: left 500ms;
+}
+
+.transition-main {
+    transition: margin 500ms;
+}

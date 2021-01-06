@@ -5,9 +5,92 @@
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+__webpack_require__(/*! ./detectThemeAtStartup */ "./resources/js/detectThemeAtStartup.js")();
 
+window.toggleDarkMode = __webpack_require__(/*! ./toggleDarkMode */ "./resources/js/toggleDarkMode.js");
+window.toggleMenu = __webpack_require__(/*! ./toggleMenu */ "./resources/js/toggleMenu.js");
+window.toggleVisibility = __webpack_require__(/*! ./toggleVisibility */ "./resources/js/toggleVisibility.js");
+
+/***/ }),
+
+/***/ "./resources/js/detectThemeAtStartup.js":
+/*!**********************************************!*\
+  !*** ./resources/js/detectThemeAtStartup.js ***!
+  \**********************************************/
+/***/ ((module) => {
+
+/**
+ * Attach to window load event and set the theme to dark or light
+ * localStorage.theme if present has precedence over prefer-color-scheme
+ * Side Effect: Sets html class dark
+ */
+module.exports = function () {
+  window.addEventListener('load', function () {
+    var dark = false;
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) dark = true;
+    if (localStorage.getItem('theme')) dark = localStorage.getItem('theme') === 'dark';
+    if (dark) document.querySelector('html').classList.add('dark');else document.querySelector('html').classList.remove('dark');
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/toggleDarkMode.js":
+/*!****************************************!*\
+  !*** ./resources/js/toggleDarkMode.js ***!
+  \****************************************/
+/***/ ((module) => {
+
+/**
+ * Toggles dark mode
+ * Side Effect: change html class 'dark'
+ * Side Effect: Sets localStorage.theme
+ */
+module.exports = function () {
+  var html = document.querySelector('html');
+  var targetIsDark = !html.classList.contains('dark');
+
+  if (targetIsDark) {
+    html.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    html.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/toggleMenu.js":
+/*!************************************!*\
+  !*** ./resources/js/toggleMenu.js ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = function () {
+  setTimeout(function () {
+    document.getElementById('menu').classList.toggle('-left-32');
+    document.getElementById('menu').classList.toggle('left-0');
+    document.getElementById('main').classList.toggle('ml-32');
+  }, 0);
+};
+
+/***/ }),
+
+/***/ "./resources/js/toggleVisibility.js":
+/*!******************************************!*\
+  !*** ./resources/js/toggleVisibility.js ***!
+  \******************************************/
+/***/ ((module) => {
+
+/**
+ * Toggle hidden class of element with given id
+ */
+module.exports = function (id) {
+  document.getElementById(id).classList.toggle('hidden');
+};
 
 /***/ }),
 

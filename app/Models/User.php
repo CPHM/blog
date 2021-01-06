@@ -27,4 +27,10 @@ class User extends Authenticatable
         if (empty($value))
             return $this->gravatar($this->attributes['email']);
     }
+
+    private function gravatar($email)
+    {
+        $email = md5(strtolower(trim($email)));
+        return "https://gravatar.com/avatar/$email?d=mp";
+    }
 }
