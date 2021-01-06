@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto/Roboto-Bold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Lobster';
+    src: url('Lobster/Lobster-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('Lobster/Lobster-Regular.ttf');
+}
+
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+.font-lobster {
+    font-family: 'Lobster', cursive;
+}
+
+.font-inconsolata {
+    font-family: 'Inconsolata', monospace;
+}
+
