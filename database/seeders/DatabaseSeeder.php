@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +24,8 @@ class DatabaseSeeder extends Seeder
             'about' => 'Admin Almighty'
         ]);
 
-        User::factory()->times(50)->create();
+        User::factory()->times(5)->create();
+
+        Category::factory()->times(20)->create();
     }
 }

@@ -25,7 +25,7 @@
                     <div id="user-dropdown"
                          class="hidden origin-top-right absolute right-4 w-32 rounded-md shadow-lg bg-gray-100 dark:bg-gray-700 ring-1 ring-black ring-opacity-5">
                         <div class="py-1">
-                            <a href="{{route('users.update', auth()->user())}}"
+                            <a href="{{route('users.edit', auth()->user())}}"
                                class="block px-4 py-2 text-sm hover:bg-gray-200 dark:hover:bg-gray-600">
                                 <i class="icon-user mr-1"></i>
                                 Account
@@ -79,7 +79,7 @@
             @endguest
         </div>
     </nav>
-    <div id="main" class="transition-main px-4 pb-4 pt-16 min-h-screen flex flex-col justify-between">
+    <div id="main" class="transition-main px-4 pb-4 pt-16 @yield('mainClasses')">
         @yield('content')
     </div>
 @endsection

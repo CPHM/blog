@@ -24,6 +24,61 @@
     .separator {
         @apply h-0 w-1/2 my-2 mx-auto border-b border-gray-500
     }
+    .showdownResult ul {
+        @apply list-disc pl-6
+    }
+    .showdownResult ol {
+        @apply list-decimal ml-6
+    }
+    .showdownResult h1 {
+        @apply text-3xl ml-1 my-3
+    }
+    .showdownResult h2 {
+        @apply text-2xl ml-1 my-2
+    }
+    .showdownResult h3 {
+        @apply text-xl ml-1 my-1
+    }
+    .showdownResult h4 {
+        @apply text-lg ml-1 my-1
+    }
+    .showdownResult h5, .showdownResult h6 {
+        @apply my-1
+    }
+    .showdownResult p {
+        @apply ml-1 my-0.5
+    }
+    .showdownResult a {
+        @apply link my-0.5
+    }
+    .showdownResult blockquote {
+        @apply ml-2 border-l border-black dark:border-gray-200 my-0.5
+    }
+    .showdownResult pre {
+        @apply mx-1 my-0.5
+    }
+    .showdownResult pre code {
+        @apply block w-full p-1 bg-gray-200 dark:bg-gray-600 my-0.5 overflow-x-auto
+    }
+    .showdownResult :not(pre) code {
+        @apply inline-block px-1 bg-gray-200 dark:bg-gray-600 rounded-lg
+    }
+    .showdownResult img {
+        max-width: calc(100% - 0.5rem) !important;
+        @apply mx-1
+    }
+    .showdownResult table {
+        @apply mx-1
+    }
+    .showdownResult td, .showdownResult th {
+        @apply p-1
+    }
+    .showdownResult table tr :not(:last-child) {
+        @apply border-r border-black dark:border-gray-200
+    }
+    .showdownResult table thead {
+        @apply border-b border-black dark:border-gray-200
+    }
 }
 
 .transition-menu {

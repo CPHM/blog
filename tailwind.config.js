@@ -8,6 +8,9 @@ module.exports = {
         minWidth: {
             '240px': '240px'
         },
+        maxWidth: {
+            '360px': '360px'
+        },
         extend: {},
     },
     variants: {

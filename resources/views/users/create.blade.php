@@ -27,7 +27,7 @@
         </div>
         <div class="mb-2">
             <label for="about" class="block mb-1">About</label>
-            <textarea name="about" id="about" class="w-full resize-none"></textarea>
+            <textarea name="about" id="about" class="w-full resize-none">{{old('about')}}</textarea>
             @error('about')
             <p class="text-red-500 text-sm">
                 {{$message}}

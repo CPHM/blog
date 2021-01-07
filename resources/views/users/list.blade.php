@@ -5,7 +5,7 @@
         <div class="min-h-full flex flex-row flex-wrap">
             @foreach($users as $user)
                 <div
-                    class="flex flex-col justify-between p-3 m-3 flex-1 min-w-240px bg-white dark:bg-gray-800 shadow-md">
+                    class="flex flex-col justify-between p-3 m-3 flex-1 min-w-240px max-w-360px bg-white dark:bg-gray-800 shadow-md">
                     <div>
                         <div class="flex items-center">
                             <img src="{{$user->avatar}}" alt="Avatar of {{$user->name}}" class="h-6 rounded-full mr-1"/>

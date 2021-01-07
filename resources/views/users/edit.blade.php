@@ -39,7 +39,7 @@
         <div class="mb-4">
             <label class="flex block justify-between items-center">
                 <span>Admin</span>
-                <input type="checkbox" name="admin" value="1" checked="{{$user->admin ? 'checked' : ''}}"/>
+                <input type="checkbox" name="admin" value="1" {{$user->admin ? 'checked' : ''}}/>
             </label>
             @error('admin')
             <p class="text-red-500 text-sm">
