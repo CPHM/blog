@@ -18,7 +18,8 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('SET NULL');
             $table->string('title');
             $table->text('summary');
-            $table->longText('content');
+            $table->longText('markdown');
+            $table->longText('parsed');
             $table->timestamps();
         });
     }

@@ -1,5 +1,7 @@
 require("./detectThemeAtStartup")();
 
+require("./areYouSure")();
+
 window.toggleDarkMode = require("./toggleDarkMode");
 
 window.toggleMenu = require("./toggleMenu");

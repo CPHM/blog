@@ -7,12 +7,12 @@
                 <div
                     class="flex flex-col justify-between p-3 m-3 flex-1 min-w-240px max-w-360px bg-white dark:bg-gray-800 shadow-md">
                     <div>
-                        <div class="flex items-center">
+                        <div class="flex items-center font-roboto">
                             <img src="{{$user->avatar}}" alt="Avatar of {{$user->name}}" class="h-6 rounded-full mr-1"/>
                             <h4 class="text-lg">{{$user->name}}</h4>
                         </div>
-                        <h6><i class="icon-envelop"></i> {{$user->email}}</h6>
-                        <p class="text-sm">{{$user->about}}</p>
+                        <h6 class="font-roboto"><i class="icon-envelop"></i> {{$user->email}}</h6>
+                        <p class="text-sm font-lobster">{{$user->about}}</p>
                     </div>
                     <div class="flex justify-center space-x-6 pt-4">
                         <a href="{{route('users.edit', $user)}}" class="text-yellow-500 hover:text-yellow-900">
@@ -24,7 +24,8 @@
                         <form action="{{route('users.destroy', $user)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-500 hover:text-red-900 focus:outline-none">
+                            <button type="submit" class="text-red-500 hover:text-red-900 focus:outline-none areYouSure"
+                                    data-sure-message="Are you sure you want to delete this use? You won't be able to undo this.">
                                 <i class="icon-bin"></i>
                             </button>
                         </form>

@@ -12,7 +12,8 @@ class Post extends Model
     protected $fillable = [
         'title',
         'summary',
-        'content'
+        'markdown',
+        'parsed'
     ];
 
     public function user()

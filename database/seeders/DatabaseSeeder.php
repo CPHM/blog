@@ -25,7 +25,5 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->times(5)->create();
-
-        Category::factory()->times(20)->create();
     }
 }

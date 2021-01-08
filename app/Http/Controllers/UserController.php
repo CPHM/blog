@@ -22,6 +22,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $this->checkAdmin();
         $validatedData = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
@@ -43,19 +44,31 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('users.edit', [
-            'user' => $user
-        ]);
+        if (Auth::user()->admin || Auth::user()->id === $user->id) {
+            return view('users.edit', [
+                'user' => $user
+            ]);
+        } else {
+            abort(403);
+        }
     }
 
     public function update(Request $request, User $user)
     {
-        $validatedData = $request->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'about' => ['nullable', 'string', 'max:100'],
-            'admin' => ['boolean']
-        ]);
+        if (Auth::user()->id === $user->id) {
+            $validatedData = $request->validate([
+                'name' => ['required'],
+                'email' => ['required', 'email', 'unique:users,email'],
+                'about' => ['nullable', 'string', 'max:100']
+            ]);
+        } else if (Auth::user()->admin) {
+            $validatedData = $request->validate([
+                'name' => ['required'],
+                'email' => ['required', 'email', 'unique:users,email'],
+                'about' => ['nullable', 'string', 'max:100'],
+                'admin' => ['boolean']
+            ]);
+        }
         $user->fill($validatedData);
         $user->save();
         return redirect()->route('users.show', $user);
@@ -63,6 +76,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        $this->checkAdmin();
         $user->delete();
         return redirect()->route('users.index');
     }

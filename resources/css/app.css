@@ -79,6 +79,9 @@
     .showdownResult table thead {
         @apply border-b border-black dark:border-gray-200
     }
+    .showdownResult input[type=checkbox] {
+        margin-left: 0.25rem !important;
+    }
 }
 
 .transition-menu {
