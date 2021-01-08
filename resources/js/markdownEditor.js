@@ -24,10 +24,10 @@ function mountMarkdownEditorShortcuts(editorElement) {
     editorElement.addEventListener('keydown', function (e) {
         if (e.key === 'Tab') {
             e.preventDefault();
-            editorElement.value += "    ";
+            document.execCommand('insertText', false, "    ");
         } else if (e.key === 'Enter' && e.shiftKey) {
             e.preventDefault();
-            editorElement.value += "\n<br />\n";
+            document.execCommand('insertText', false, "\n<br />\n");
         }
     });
 }
