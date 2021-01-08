@@ -2877,9 +2877,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
 /*!****************************************!*\
   !*** ./resources/js/markdownEditor.js ***!
   \****************************************/
-var showdown = __webpack_require__(/*! ./showdown.min */ "./resources/js/showdown.min.js");
+window.showdown = __webpack_require__(/*! ./showdown.min */ "./resources/js/showdown.min.js");
 
-function initializeMdEditor(formId, editorId, previewDivId, hiddenInputId, previewBtnId, editBtnId) {
+window.initializeMdEditor = function (formId, editorId, previewDivId, hiddenInputId, previewBtnId, editBtnId) {
   showdown.setOption('emoji', true);
   showdown.setOption('tables', true);
   showdown.setOption('tasklists', true);
@@ -2894,7 +2894,7 @@ function initializeMdEditor(formId, editorId, previewDivId, hiddenInputId, previ
   mountMarkdownEditorShortcuts(editor);
   mountMarkdownFormSubmitListener(form, editor, hiddenInput);
   attachPreviewFunctionsToWindow(editor, previewDiv, previewBtn, editBtn);
-}
+};
 
 function mountMarkdownEditorShortcuts(editorElement) {
   editorElement.addEventListener('keydown', function (e) {
@@ -2919,7 +2919,7 @@ function mountMarkdownFormSubmitListener(formElement, editorElement, hiddenInput
 function attachPreviewFunctionsToWindow(markdownEditor, previewDiv, previewOnBtn, previewOffBtn) {
   previewOnBtn.addEventListener('click', function () {
     var converter = new showdown.Converter();
-    previewDiv.innerHTML = converter(markdownEditor.value);
+    previewDiv.innerHTML = converter.makeHtml(markdownEditor.value);
     markdownEditor.classList.add('hidden');
     previewOnBtn.classList.add('hidden');
     previewDiv.classList.remove('hidden');

@@ -43,8 +43,8 @@
         </div>
     </form>
     {{--  seperate from app.js because most users(readers) won't need this  --}}
-    <script src="{{asset('js/showdown.min.js')}}"></script>
+    <script src="{{asset('js/markdownEditor.js')}}"></script>
     <script>
-        initalizeMdEditor('editPostForm', 'markdown', 'preview', 'parsed', 'previewOnBtn', 'previewOffBtn');
+        initializeMdEditor('editPostForm', 'markdown', 'preview', 'parsed', 'previewOnBtn', 'previewOffBtn');
     </script>
 @endsection

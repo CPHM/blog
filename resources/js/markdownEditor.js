@@ -1,6 +1,6 @@
-const showdown = require("./showdown.min");
+window.showdown = require("./showdown.min");
 
-function initializeMdEditor(formId, editorId, previewDivId, hiddenInputId, previewBtnId, editBtnId) {
+window.initializeMdEditor = function (formId, editorId, previewDivId, hiddenInputId, previewBtnId, editBtnId) {
 
     showdown.setOption('emoji', true);
     showdown.setOption('tables', true);
@@ -43,7 +43,7 @@ function mountMarkdownFormSubmitListener(formElement, editorElement, hiddenInput
 function attachPreviewFunctionsToWindow(markdownEditor, previewDiv, previewOnBtn, previewOffBtn) {
     previewOnBtn.addEventListener('click', function () {
         const converter = new showdown.Converter();
-        previewDiv.innerHTML = converter(markdownEditor.value);
+        previewDiv.innerHTML = converter.makeHtml(markdownEditor.value);
         markdownEditor.classList.add('hidden');
         previewOnBtn.classList.add('hidden');
         previewDiv.classList.remove('hidden');
