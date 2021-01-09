@@ -2,7 +2,7 @@
 
 @section('title', "Latest Articles (page" . $posts->currentPage() . ")")
 
-@section('description', "Latest Articles (page" . $posts->currentPage() . ")");
+@section('description', "Latest Articles (page" . $posts->currentPage() . ")")
 
 @section('mainClasses', 'min-h-screen flex flex-col justify-between')
 
@@ -16,11 +16,14 @@
                             <h3 class="text-xl font-roboto">
                                 {{$post->title}}
                             </h3>
-                            <p class="text-sm font-roboto">
-                                <i class="icon-user"></i> {{$post->user->name}}
+                            <p class="flex flex-row items-center text-sm font-roboto">
+                                <img src="{{$post->user->avatar}}" alt="Avatar of {{$post->user->name}}"
+                                     class="inline-block h-4 mr-2 rounded-full"/>
+                                {{$post->user->name}}
                             </p>
-                            <p class="text-sm text-justify font-roboto">
-                                <i class="icon-clock"></i> {{$post->created_at->toDayDateTimeString()}}
+                            <p class="flex flex-row items-center text-sm text-justify font-roboto">
+                                <i class="icon-clock mr-2"></i>
+                                <span>{{$post->created_at->toDayDateTimeString()}}</span>
                             </p>
                         </div>
                         <div class="separator"></div>

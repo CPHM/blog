@@ -33,10 +33,19 @@
                     </form>
                 @endcan
             </h1>
-            <p class="mb-1"><i class="icon-user"></i> {{$post->user->name}}</p>
-            <p class="text-sm"><i class="icon-clock"></i> Created at {{$post->created_at->toDayDateTimeString()}}</p>
+            <p class="mb-1 flex flex-row items-center">
+                <img src="{{$post->user->avatar}}" alt="Avatar of {{$post->user->name}}" class="inline-block h-6 mr-2 rounded-full"/>
+                <span>{{$post->user->name}}</span>
+            </p>
+            <p class="flex flex-row items-center text-sm mb-1">
+                <i class="icon-clock mr-2 text-2xl"></i>
+                <span>Published on {{$post->created_at->toDayDateTimeString()}}</span>
+            </p>
             @if($post->created_at->notEqualTo($post->updated_at))
-                <p class="text-sm"><i class="icon-clock"></i> Updated at {{$post->updated_at->toDayDateTimeString()}}</p>
+                <p class="flex flex-row items-center text-sm mb-1">
+                    <i class="icon-clock mr-2 text-2xl"></i>
+                    <span>Last edited on {{$post->updated_at->toDayDateTimeString()}}</span>
+                </p>
             @endif
         </div>
         <div class="separator"></div>
