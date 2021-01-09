@@ -1,21 +1,31 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
+    "name": "blog",
+    "version": "1.0.0",
+    "description": "Simple blog with built-in dark mode. Authoring posts is done with Markdown with some extra features offered by showdown library like automatic links, images sizing and task lists(like github).",
+    "dependencies": {
+        "autoprefixer": "^10.2.1",
+        "postcss": "^8.2.4",
+        "tailwindcss": "^2.0.2",
+        "webpack": "^5.12.2",
+        "webpack-cli": "^4.3.1"
     },
     "devDependencies": {
-        "@tailwindcss/postcss7-compat": "^2.0.2",
-        "autoprefixer": "^9.8.6",
-        "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
-        "postcss": "^8.1.14",
-        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
-    }
+        "laravel-mix": "^6.0.9"
+    },
+    "scripts": {
+        "prod": "npx mix --production",
+        "dev": "npx mix",
+        "watch": "npx mix watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cphm/blog.git"
+    },
+    "keywords": [],
+    "author": "Ali Rahimi <ali_rahimi_coder@protonmail.com> (https://ali-rahimi.info)",
+    "license": "Unlicense",
+    "bugs": {
+        "url": "https://github.com/cphm/blog/issues"
+    },
+    "homepage": "https://github.com/cphm/blog#readme"
 }
