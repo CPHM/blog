@@ -1,5 +1,7 @@
 @extends('with-navigation')
 
+@section('title', 'Create new user')
+
 @section('content')
     <form action="{{route('users.store')}}" method="POST"
           class="w-80 p-3 m-auto rounded-md bg-white dark:bg-gray-800 shadow-lg">

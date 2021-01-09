@@ -1,7 +1,8 @@
 @extends('with-navigation')
 
+@section('title', 'Edit user')
+
 @section('content')
-    <span class="hidden"><?php var_dump($errors) ?></span>
     <form action="{{route('users.update', $user)}}" method="POST"
           class="w-80 p-3 m-auto rounded-md bg-white dark:bg-gray-800 shadow-lg">
         @csrf

@@ -1,5 +1,7 @@
 @extends('with-navigation')
 
+@section('title', 'Edit Article')
+
 @section('content')
     <form action="{{route('posts.update', $post)}}" method="POST" id="editPostForm"
           class="w-full p-3 bg-white dark:bg-gray-800 shadow-lg font-roboto">

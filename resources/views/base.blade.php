@@ -11,7 +11,7 @@
     @yield('head')
 </head>
 <body class="font-roboto">
-    @yield('body')
-    <script src="{{asset('js/app.js')}}"></script>
+@yield('body')
+<script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

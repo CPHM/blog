@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth')->except(['index', 'show', 'autocomplete']);
     }
 
     public function index()
@@ -43,27 +43,19 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('posts.show', [
-            'title' => $post->title,
-            'summary' => $post->summary,
-            'markdown' => $post->markdown,
-            'parsed' => $post->parsed,
-            'created_at' => $post->created_at,
-            'updated_at' => $post->updated_at,
-            'user' => $post->user
+            'post' => $post
         ]);
     }
 
     public function edit(Post $post)
     {
-        if (!Auth::user()->admin && Auth::user()->id !== $post)
-            abort(403);
+        $this->authorize('update', $post);
         return view('posts.edit', compact('post'));
     }
 
     public function update(Request $request, Post $post)
     {
-        if (!Auth::user()->admin && Auth::user()->id !== $post)
-            abort(403);
+        $this->authorize('update', $post);
         $validatedData = $request->validate([
             'title' => ['required', 'string', 'max:50'],
             'summary' => ['required', 'string', 'max:160'],
@@ -77,8 +69,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        if (!Auth::user()->admin && Auth::user()->id !== $post)
-            abort(403);
+        $this->authorize('delete', $post);
         $post->delete();
         return redirect()->back();
     }

@@ -1,5 +1,9 @@
 @extends('with-navigation')
 
+@section('title', 'Users')
+
+@section('description', 'Writers of the blog')
+
 @section('mainClasses', 'min-h-screen flex flex-col justify-between')
 
 @section('content')

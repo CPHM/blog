@@ -1,5 +1,7 @@
 @extends('with-navigation')
 
+@section('title', 'Edit category')
+
 @section('content')
     <form action="{{route('categories.update')}}" method="POST"
           class="w-80 p-3 m-auto rounded-md bg-white dark:bg-gray-800 shadow-lg">

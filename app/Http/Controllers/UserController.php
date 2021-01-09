@@ -11,18 +11,19 @@ class UserController extends Controller
 
     public function index()
     {
-        $this->checkAdmin();
+        $this->authorize('viewAny', User::class);
         return view('users.list', ['users' => User::orderBy('name', 'asc')->paginate(12)]);
     }
 
     public function create()
     {
+        $this->authorize('create', User::class);
         return view('users.create');
     }
 
     public function store(Request $request)
     {
-        $this->checkAdmin();
+        $this->authorize('create', User::class);
         $validatedData = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
@@ -36,6 +37,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        $this->authorize('view', $user);
         return view('users.posts', [
             'user' => $user,
             'posts' => $user->posts()->paginate(10)
@@ -44,17 +46,15 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        if (Auth::user()->admin || Auth::user()->id === $user->id) {
-            return view('users.edit', [
-                'user' => $user
-            ]);
-        } else {
-            abort(403);
-        }
+        $this->authorize('update', $user);
+        return view('users.edit', [
+            'user' => $user
+        ]);
     }
 
     public function update(Request $request, User $user)
     {
+        $this->authorize('update', $user);
         if (Auth::user()->id === $user->id) {
             $validatedData = $request->validate([
                 'name' => ['required'],
@@ -76,14 +76,8 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $this->checkAdmin();
+        $this->authorize('delete', $user);
         $user->delete();
         return redirect()->route('users.index');
-    }
-
-    private function checkAdmin()
-    {
-        if (!Auth::user()->admin)
-            abort(403);
     }
 }
