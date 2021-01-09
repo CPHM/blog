@@ -1,11 +1,13 @@
 @extends('with-navigation')
 
+@section('mainClasses', 'min-h-screen flex flex-col justify-between')
+
 @section('content')
     @if($users->count() > 0)
-        <div class="min-h-full flex flex-row flex-wrap">
+        <div class="grid w-full gird-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
             @foreach($users as $user)
                 <div
-                    class="flex flex-col justify-between p-3 m-3 flex-1 min-w-240px max-w-360px bg-white dark:bg-gray-800 shadow-md">
+                    class="flex flex-col justify-between p-3 m-3 flex-1 max-w-360px bg-white dark:bg-gray-800 shadow-md">
                     <div>
                         <div class="flex items-center font-roboto">
                             <img src="{{$user->avatar}}" alt="Avatar of {{$user->name}}" class="h-6 rounded-full mr-1"/>
@@ -14,7 +16,7 @@
                         <h6 class="font-roboto"><i class="icon-envelop"></i> {{$user->email}}</h6>
                         <p class="text-sm font-lobster">{{$user->about}}</p>
                     </div>
-                    <div class="flex justify-center space-x-6 pt-4">
+                    <div class="flex flex-row justify-center space-x-6 pt-4">
                         <a href="{{route('users.edit', $user)}}" class="text-yellow-500 hover:text-yellow-900">
                             <i class="icon-edit"></i>
                         </a>
@@ -43,10 +45,8 @@
             {{$users->links()}}
         </div>
     @else
-        <div class="w-full h-full flex justify-center items-center">
-            <div>
-                Nothing found!
-            </div>
+        <div class="w-full text-center font-2xl font-inconsolata">
+            Expected Array, got NULL.
         </div>
     @endif
 @endsection

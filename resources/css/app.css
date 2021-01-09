@@ -46,13 +46,16 @@
         @apply my-1
     }
     .showdownResult p {
-        @apply ml-1 my-0.5
+        @apply ml-1 my-0.5 text-justify
     }
     .showdownResult a {
         @apply link my-0.5
     }
     .showdownResult blockquote {
         @apply ml-2 border-l border-black dark:border-gray-200 my-0.5
+    }
+    .showdownResult code {
+        font-family: Inconsolata, monospace;
     }
     .showdownResult pre {
         @apply mx-1 my-0.5

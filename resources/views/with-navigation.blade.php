@@ -8,7 +8,7 @@
                 &#9776;
             </button>
             <div class="mx-4">
-                <a href="{{route('home')}}">
+                <a href="{{route('posts.index')}}">
                     {{env('APP_NAME', 'Blog')}}
                 </a>
             </div>
@@ -47,7 +47,7 @@
     <nav id="menu"
          class="fixed top-12 bottom-0 -left-32 w-32 flex items-center bg-gray-100 dark:bg-gray-800 shadow-lg transition-menu">
         <div class="w-full">
-            <a href="{{route('home')}}"
+            <a href="{{route('posts.index')}}"
                class="block w-full h-10 flex items-center px-2 hover:bg-gray-200 dark:hover:bg-gray-700">
                 Articles
             </a>

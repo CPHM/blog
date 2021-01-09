@@ -31,7 +31,7 @@
                 <i class="icon-code"></i>
             </button>
         </div>
-        <div class="h-80 border-b border-l border-r border-gray-600 mb-3">
+        <div class="h-80 border-b border-l border-r border-gray-600 mb-3 font-inconsolata">
             <textarea name="markdown" id="markdown"
                       class="w-full h-full focus:outline-none resize-none">{{old('markdown')}}</textarea>
             <div id="preview"

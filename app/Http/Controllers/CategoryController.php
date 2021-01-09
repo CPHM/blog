@@ -62,6 +62,23 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index');
+        return redirect()->back();
+    }
+
+    public function autocomplete(Request $request)
+    {
+        $term = $request->get('term');
+        $fromMiddle = $request->get('middle', false);
+        if ($fromMiddle)
+            $categories = Category::where('title', 'LIKE', "%$term%")->orderBy('title', 'asc')->take(5)->get();
+        else
+            $categories = Category::where('title', 'LIKE', "$term%")->orderBy('title', 'asc')->take(5)->get();
+        return response()->json(array_map(function ($category) {
+            return [
+                'id' => $category->id,
+                'title' => $category->title,
+                'summary' => $category->description
+            ];
+        }, $categories));
     }
 }
