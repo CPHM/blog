@@ -41,12 +41,23 @@
                  class="showdownResult h-full w-full hidden overflow-y-auto bg-gray-200 dark:bg-gray-700"></div>
             <input type="hidden" name="parsed" id="parsed"/>
         </div>
+        <div>
+            <label for="categories" class="block">Categories</label>
+            <select name="categories[]" id="categories" multiple class="w-48">
+                @foreach($categories as $category)
+                    <option value="{{$category->id}}"
+                            @if($post->categories->contains($category)) selected @endif>
+                        {{$category->title}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
         <div class="flex justify-center">
             <button type="submit" class="btn h-10 w-48 max-w-full">Update</button>
         </div>
     </form>
     {{--  seperate from app.js because most users(readers) won't need this  --}}
-    <script src="{{asset('js/markdownEditor.js')}}"></script>
+    <script src="{{asset('js/authoring.js')}}"></script>
     <script>
         initializeMdEditor('editPostForm', 'markdown', 'preview', 'parsed', 'previewOnBtn', 'previewOffBtn');
     </script>

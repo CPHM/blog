@@ -7,8 +7,12 @@
         @apply text-black bg-gray-100 dark:text-white dark:bg-gray-900
     }
 
-    input, textarea {
+    input, textarea, select {
         @apply text-black bg-gray-200 dark:text-white dark:bg-gray-700 p-2
+    }
+
+    option {
+        @apply p-0.5
     }
 }
 

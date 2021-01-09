@@ -1,6 +1,4 @@
-window.showdown = require("./showdown.min");
-
-window.initializeMdEditor = function (formId, editorId, previewDivId, hiddenInputId, previewBtnId, editBtnId) {
+module.exports = function (formId, editorId, previewDivId, hiddenInputId, previewBtnId, editBtnId) {
 
     showdown.setOption('emoji', true);
     showdown.setOption('tables', true);

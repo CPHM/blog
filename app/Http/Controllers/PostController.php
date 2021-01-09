@@ -34,9 +34,13 @@ class PostController extends Controller
             'title' => ['required', 'string', 'max:50'],
             'summary' => ['required', 'string', 'max:160'],
             'markdown' => ['required'],
-            'parsed' => ['required']
+            'parsed' => ['required'],
+            'categories' => ['array', 'int']
         ]);
         $post = Auth::user()->posts()->create($validatedData);
+        foreach ($validatedData['categories'] as $category) {
+            $post->categories()->attach($category);
+        }
         return redirect()->route('posts.show', $post);
     }
 
@@ -50,7 +54,10 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize('update', $post);
-        return view('posts.edit', compact('post'));
+        return view('posts.edit', [
+            'post' => $post,
+            'categories' => Category::all()
+        ]);
     }
 
     public function update(Request $request, Post $post)
@@ -60,10 +67,19 @@ class PostController extends Controller
             'title' => ['required', 'string', 'max:50'],
             'summary' => ['required', 'string', 'max:160'],
             'markdown' => ['required'],
-            'parsed' => ['required']
+            'parsed' => ['required'],
+            'categories' => ['array']
         ]);
         $post->fill($validatedData);
         $post->save();
+        foreach ($validatedData['categories'] as $category) {
+            if (!$post->categories->contains($category))
+                $post->categories()->attach($category);
+        }
+        foreach ($post->categories as $category) {
+            if (!in_array($category->id, $validatedData['categories']))
+                $post->categories()->detach($category);
+        }
         return redirect()->route('posts.show', $post);
     }
 

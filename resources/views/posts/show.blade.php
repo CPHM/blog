@@ -52,5 +52,13 @@
         <div class="showdownResult">
             {!! $post->parsed !!}
         </div>
+        <div class="mt-10 separator"></div>
+        <div class="text-center">
+            @foreach($post->categories as $category)
+                <a href="{{route('categories.show', $category)}}" class="link py-1 px-3 m-4 bg-opacity-20 bg-gray-500 rounded-xl">
+                    {{$category->title}}
+                </a>
+            @endforeach
+        </div>
     </div>
 @endsection
