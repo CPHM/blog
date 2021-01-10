@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -32,5 +33,7 @@ Route::resource('posts', PostController::class)->except('index');
 Route::resource('categories', CategoryController::class);
 
 Route::resource('users', UserController::class)->middleware('auth');
+
+Route::apiResource('posts.comments', CommentController::class)->shallow();
 
 

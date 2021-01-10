@@ -3,51 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Post $post)
     {
-        //
+        return $post->comments()->orderBy('created_at', 'desc')->paginate(5);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+        $validated = $request->validate([
+            'title' => ['required', 'max:50'],
+            'name' => ['max:50'],
+            'content' => ['required', 'string', 'max:10000']
+        ]);
+        return $post->comments()->create($validated);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Comment $comment)
     {
-        //
+        if (!(Auth::user()->admin || Auth::user()->id === $comment->user->id))
+            abort(403);
+        $comment->delete();
+        return response('', 204);
     }
 }

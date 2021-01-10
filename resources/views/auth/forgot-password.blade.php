@@ -1,5 +1,7 @@
 @extends('base')
 
+@section('title', 'Forgot Password')
+
 @section('body')
     <div class="w-screen h-screen flex justify-center items-center">
         <form action="{{route('password.request')}}" method="POST" class="w-72">

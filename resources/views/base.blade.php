@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>@yield('title', env('APP_NAME', 'Blog'))</title>
+    <title>
+        @if(View::hasSection('title'))
+            {{env('APP_NAME', 'Blog')}} - @yield('title')
+        @else
+            {{env('APP_NAME', 'Blog')}}
+        @endif
+    </title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/fonts.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/icomoon.css')}}"/>
-    <meta name="description" content="@yield('description', '')"/>
+    @if(View::hasSection('description'))
+        <meta name="description" content="@yield('description')"/>
+    @endif
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     @yield('head')
 </head>
