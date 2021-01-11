@@ -26,7 +26,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::view('/password/request', 'auth.forgot-password')->name('password.request');
 Route::post('/password/request', [AuthController::class, 'getResetEmail']);
 Route::get('/password/reset/{token}', [AuthController::class, 'resetForm']);
-Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('password.request');
+Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
 
 Route::resource('posts', PostController::class)->except('index');
 
