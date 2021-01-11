@@ -4,7 +4,7 @@
 
 @section('content')
     <form action="{{route('posts.store')}}" method="POST" id="editPostForm"
-          class="w-full p-3 bg-white dark:bg-gray-800 shadow-lg font-roboto">
+          class="w-full p-3 max-w-800px mx-auto bg-white dark:bg-gray-800 shadow-lg font-roboto">
         @csrf
         <div>
             <label for="title" class="block">Title</label>

@@ -37,6 +37,14 @@
                             </form>
                         </div>
                     @endauth
+                    @guest()
+                        <div class="text-right">
+                            <a href="{{route('categories.show', $category)}}" class="link">
+                                <?php $count = $category->posts()->count() ?>
+                                {{$count}} {{$count === 1 ? 'post' : 'posts'}}
+                            </a>
+                        </div>
+                    @endguest
                 </div>
             @endforeach
         </div>

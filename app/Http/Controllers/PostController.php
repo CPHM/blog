@@ -35,7 +35,7 @@ class PostController extends Controller
             'summary' => ['required', 'string', 'max:160'],
             'markdown' => ['required'],
             'parsed' => ['required'],
-            'categories' => ['array', 'int']
+            'categories' => ['array']
         ]);
         $post = Auth::user()->posts()->create($validatedData);
         foreach ($validatedData['categories'] as $category) {

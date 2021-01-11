@@ -39,7 +39,7 @@ class CategoryController extends Controller
     {
         return view('categories.posts', [
             'category' => $category,
-            'posts' => $category->posts()->orderBy('title', 'asc')->paginate(10)
+            'posts' => $category->posts()->orderBy('created_at', 'desc')->paginate(10)
         ]);
     }
 
