@@ -43,9 +43,9 @@
             </p>
             <p class="flex flex-row items-center text-sm mb-1">
                 Published on {{$post->created_at->toFormattedDateString()}}
-            @if($post->created_at->notEqualTo($post->updated_at))
-                - updated on {{$post->updated_at->toFormattedDateString()}}
-            @endif
+                @if($post->created_at->notEqualTo($post->updated_at))
+                    - updated on {{$post->updated_at->toFormattedDateString()}}
+                @endif
             </p>
         </div>
         <div class="separator"></div>
@@ -62,10 +62,16 @@
                 </a>
             @endforeach
         </div>
+        <div class="text-center">
+            <button class="link focus:outline-none" onclick="window.openCommentsDrawer()">
+                <i class="icon-chat"></i>
+                {{$post->comments()->count()}}
+            </button>
+        </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            comments('{{route('posts.comments.index', $post)}}')
+            initializeCommentsDrawer('{{route('posts.comments.index', $post)}}', '{{csrf_token()}}', '@auth(){{auth()->user()->name}}@endauth')
         });
     </script>
 @endsection

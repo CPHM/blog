@@ -8,4 +8,6 @@ window.toggleMenu = require("./toggleMenu");
 
 window.toggleVisibility = require("./toggleVisibility");
 
-window.comments = require("./comments");
+window.initializeCommentsDrawer = require("./comments").initializeCommentsDrawer;
+
+window.openCommentsDrawer = require("./comments").openCommentsDrawer;

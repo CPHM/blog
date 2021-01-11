@@ -92,7 +92,8 @@
 }
 
 .transition-menu {
-    transition: left 500ms;
+    transition-property: left, right;
+    transition-duration: 500ms;
 }
 
 .transition-main {

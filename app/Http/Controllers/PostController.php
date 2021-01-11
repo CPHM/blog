@@ -38,8 +38,10 @@ class PostController extends Controller
             'categories' => ['array']
         ]);
         $post = Auth::user()->posts()->create($validatedData);
-        foreach ($validatedData['categories'] as $category) {
-            $post->categories()->attach($category);
+        if (array_key_exists('categories', $validatedData)) {
+            foreach ($validatedData['categories'] as $category) {
+                $post->categories()->attach($category);
+            }
         }
         return redirect()->route('posts.show', $post);
     }
@@ -72,12 +74,14 @@ class PostController extends Controller
         ]);
         $post->fill($validatedData);
         $post->save();
-        foreach ($validatedData['categories'] as $category) {
-            if (!$post->categories->contains($category))
-                $post->categories()->attach($category);
+        if (array_key_exists('categories', $validatedData)) {
+            foreach ($validatedData['categories'] as $category) {
+                if (!$post->categories->contains($category))
+                    $post->categories()->attach($category);
+            }
         }
         foreach ($post->categories as $category) {
-            if (!in_array($category->id, $validatedData['categories']))
+            if (!array_key_exists('categories', $validatedData) || !in_array($category->id, $validatedData['categories']))
                 $post->categories()->detach($category);
         }
         return redirect()->route('posts.show', $post);

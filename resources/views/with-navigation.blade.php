@@ -18,7 +18,7 @@
                 <i class="icon-contrast"></i>
             </button>
             @auth()
-                <div class="relative pt-1">
+                <div class="relative pt-1 z-20">
                     <button type="button" class="mx-4 focus:outline-none" onclick="toggleVisibility('user-dropdown')">
                         <img src="{{auth()->user()->avatar}}" alt="your avatar" class="h-6 rounded-full"/>
                     </button>

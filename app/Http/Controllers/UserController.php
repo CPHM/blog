@@ -40,7 +40,7 @@ class UserController extends Controller
         $this->authorize('view', $user);
         return view('users.posts', [
             'user' => $user,
-            'posts' => $user->posts()->paginate(10)
+            'posts' => $user->posts()->orderBy('created_at', 'desc')->paginate(10)
         ]);
     }
 
