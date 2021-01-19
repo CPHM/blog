@@ -11,7 +11,10 @@ function openCommentsDrawer() {
     }, 0);
 }
 
-function initializeCommentsDrawer(baseUrl, csrfToken, name = '') {
+function initializeCommentsDrawer(baseUrl, name = '') {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    console.log(csrfToken);
+
     const drawer = document.createElement('div');
     drawer.id = 'commentsDrawer';
     drawer.classList.add('fixed', 'top-12', 'bottom-0', '-right-72', 'w-72', 'flex', 'flex-col', 'bg-gray-100', 'dark:bg-gray-800', 'shadow-lg', 'z-10', 'transition-menu');
@@ -106,7 +109,7 @@ function addCommentForm(url, csrfToken, prepend, name = '') {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'X-CSRF_TOKEN': csrfToken
+                'X-CSRF-TOKEN': csrfToken
             },
             body: data
         }).then(result => result.json())

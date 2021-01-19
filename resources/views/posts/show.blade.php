@@ -71,7 +71,7 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            initializeCommentsDrawer('{{route('posts.comments.index', $post)}}', '{{csrf_token()}}', '@auth(){{auth()->user()->name}}@endauth')
+            initializeCommentsDrawer('{{route("posts.comments.index", $post)}}', '@auth(){{auth()->user()->name}}@endauth')
         });
     </script>
 @endsection
